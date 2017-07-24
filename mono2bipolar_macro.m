@@ -21,7 +21,7 @@ function [EEG_bi] = mono2bipolar_macro(EEG_mono, varargin)
 % 4 - Create the bipolar file with the remaining channels
 
 p = inputParser;
-defaultBadChannelNames      = '';     % Bad Channels to be removed
+defaultBadChannelNames      = {};     % Bad Channels to be removed
 defaultKeepTriggers         = 0;      % Do you want to keep the triggers (channel mkr2+)
 
 addOptional (p, 'badChannelNames', 	defaultBadChannelNames,     @iscell);

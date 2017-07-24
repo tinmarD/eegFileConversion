@@ -9,7 +9,7 @@ function [] = jediconv_macro_mono2bipolar (macropathname, badChannelNames)
 %   - badChannelNames   : bad channel names (cell) [Optional]
 
 if nargin==1
-    badChannelNames = '';
+    badChannelNames = {};
 end
 
 filesepinds     = regexp    (macropathname, filesep);
