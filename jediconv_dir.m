@@ -44,15 +44,20 @@
 %
 % Requires : rdir, EEGLAB
 
-%- Parameters
+%% Parameters
 chunkduration       = 600;  % secondes
 downsamplingfactor  = 6;    % from 30kHz to 5kHz
 patientNum          = 43;
 macrobadchannels    = {};
 dayNumMicro         = [];
 dayNumMacro         = [];
+%- Add trigger channel in micro NSX file
+addMicroTriggerChannel   = 1;
+% minTimeBetweenTriggers  =  0.070;
+% triggerChanName         = 'trigger';
+% triggerMicroVal         = 20000;
 
-%- Inputs
+%% Inputs
 % Selectionner le dossier contenant les différents jours
 dirName     = uigetdir('','Select patient data directory'); 
 if isnumeric(dirName)
@@ -154,7 +159,7 @@ for iDay=1:nDays
 
     %% Conversions
     % 1 - ns5 to edf conversion and file segmentation
-    jediconv_nsx2edf      (NS, chunkduration, downsamplingfactor, patientNum, dayNumMicro)
+    jediconv_nsx2edf      (NS, chunkduration, downsamplingfactor, patientNum, dayNumMicro, addMicroTriggerChannel)
 
     % 2 - Macro edf file synchronization with the micro file
     jediconv_syncanddividemacrofile (NS, EEG, macro_pathname, chunkduration, patientNum, dayNumMacro, macrobadchannels);

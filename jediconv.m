@@ -55,7 +55,6 @@ addMicroTriggerChannel   = 1;
 % triggerChanName         = 'trigger';
 % triggerMicroVal         = 20000;
 
-
 %% Inputs
 [micro_ns5_filename, micro_ns5_pathname] = uigetfile ('*.ns5','Select micro-electrode file');
 [macro_filename, macro_pathname]         = uigetfile ('*.edf','Select Macro-electrode file');

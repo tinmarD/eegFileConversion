@@ -24,7 +24,6 @@ function [] = jediconv_nsx2edf (NS, chunkDuration, downsamplingFactor, patientNu
 %
 % Author(s) : Martin Deudon (Juin 2017)
 
-
 Fs              = NS.MetaTags.SamplingFreq;
 FsOut           = Fs/downsamplingFactor;
 nPoints         = NS.MetaTags.DataPoints;
@@ -46,7 +45,10 @@ else
     FsOutStr = [num2str(FsOut),'Hz'];
 end
 
-if nargin<8 
+if nargin<6
+    addTriggerChannel = 1;
+end
+if nargin<7 
     outputDirName = ['monopolaire_',FsOutStr];
 end
 filesepinds     = regexp (nsFilePath, filesep);

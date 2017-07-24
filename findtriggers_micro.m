@@ -33,7 +33,7 @@ if nargin==1
 end
 %- Get NEV filename
 if strcmp(NS.MetaTags.Filename(end-3:end),'.ns5')
-    nevFilename = [NS.MetaTags.Filename(1:end-3),'.nev'];
+    nevFilename = [NS.MetaTags.Filename(1:end-4),'.nev'];
 else
     nevFilename = [NS.MetaTags.Filename,'.nev'];
 end
