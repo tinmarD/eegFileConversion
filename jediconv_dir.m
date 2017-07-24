@@ -68,7 +68,7 @@ end
 for iDay=1:nDays
     
     % Get the files name
-    micro_dir_struct    = rdir(fullfile(dirName,DirStruct(iDay).name,'**\*.ns5'));
+    micro_dir_struct    = rdir(fullfile(dirName,DirStruct(iDay).name,['**',filesep,'*.ns5']));
     if length(micro_dir_struct)>1
         warning(['micro directory contains more than 1 file, skip it. ', fullfile(dirName,DirStruct(iDay))]);
         continue;
@@ -77,7 +77,7 @@ for iDay=1:nDays
         continue;        
     end
     micro_ns5_pathname  = micro_dir_struct.name;
-    macro_dir_struct    = rdir(fullfile(dirName,DirStruct(iDay).name,'**\*.edf'));
+    macro_dir_struct    = rdir(fullfile(dirName,DirStruct(iDay).name,['**',filesep,'*.edf']));
     if length(macro_dir_struct)>1
         %- search if any of the paths contain 'brut' 
         brutVect = regexp({macro_dir_struct.name},'brut');
