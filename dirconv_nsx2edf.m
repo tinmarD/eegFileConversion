@@ -5,7 +5,7 @@
 
 %% Parameters
 chunkDuration       = -1;   % secondes
-downsamplingFactor  = 15;    
+downsamplingFactor  = 6;    
 NSfolder            = uigetdir('Select folder containing .NS5 files');
 EDFoutputDir        = uigetdir('Select output directory');
 
@@ -53,7 +53,7 @@ for iFile=1:nFiles
             tStart      = round((indStart-1)/Fs);
             tEnd        = round((indEnd-1)/Fs);
             % Read part i of the input signal
-            NSpart_i  	= openNSx (fullfile(NS.MetaTags.FilePath,NS.MetaTags.Filename),...
+            NSpart_i  	= openNSx (fullfile(NS.MetaTags.FilePath,[NS.MetaTags.Filename, NS.MetaTags.FileExt]),...
                 'precision','double',['t:',num2str(indStart),':',num2str(indEnd)],'sample');   
             % Conversion
             EEGpart_i   = nsx2eeglab(NSpart_i, downsamplingFactor);

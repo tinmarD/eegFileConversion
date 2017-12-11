@@ -65,19 +65,23 @@ if ~triggersFound
     catch
         warning ('Could not open the NEV file associated to the NS file');
     end
-    TimeStamps  = double(NEV.Data.Spikes.TimeStamp(NEV.Data.Spikes.Electrode==129))/NS.MetaTags.SamplingFreq;
-    if ~isempty(TimeStamps)
-        triggers_msec_raw = 1000*TimeStamps;
-        disp('Triggers found in NEV.Data.Spikes.TimeStamp');
+    if isempty(NEV)
+        triggersFound = 0;
     else
-        disp('Searching triggers in NEV.Data.SerialDigitalIO.TimeStampSec...');
-        try
-            triggers_msec_raw           = 1000*NEV.Data.SerialDigitalIO.TimeStampSec';
-        catch
-            error('Could not find the triggers in the data file and in the NEV file');
+        TimeStamps  = double(NEV.Data.Spikes.TimeStamp(NEV.Data.Spikes.Electrode==129))/NS.MetaTags.SamplingFreq;
+        if ~isempty(TimeStamps)
+            triggers_msec_raw = 1000*TimeStamps;
+            disp('Triggers found in NEV.Data.Spikes.TimeStamp');
+        else
+            disp('Searching triggers in NEV.Data.SerialDigitalIO.TimeStampSec...');
+            try
+                triggers_msec_raw           = 1000*NEV.Data.SerialDigitalIO.TimeStampSec';
+            catch
+                error('Could not find the triggers in the data file and in the NEV file');
+            end
+            disp('Triggers found in NEV.Data.SerialDigitalIO.TimeStampSec');
+            triggersFound = 1;
         end
-        disp('Triggers found in NEV.Data.SerialDigitalIO.TimeStampSec');
-        triggersFound = 1;
     end
 end
 
@@ -89,7 +93,7 @@ if triggersFound
     disp(['Found ',num2str(sum(triggerToRemove)),'/',num2str(length(triggers_msec_raw)),' doubled triggers - deleting the doubled ones']);
 else
     triggers_msec_single = [];
-    error('Could not find the triggers');
+    warning('Could not find the triggers');
 end
     
 end

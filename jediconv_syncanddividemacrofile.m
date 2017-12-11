@@ -31,11 +31,12 @@ TRIGGER_THRESHOLD_MACRO = 60;
 [triggers_msec_single, ~, triggerFoundInData] = findtriggers_micro (NS);
 tFirstTriggerMicro = triggers_msec_single(1);
 
+trigChanPos = find(strcmpi({EEG.chanlocs.labels},'mkr2+'));
 %- Triggers in macro file 
-if ~strcmpi(EEG.chanlocs(end).labels,'MKR2+')
-    error ('The trigger channel must be the last one and named "mkr2+" (case insensitive)');
+if isempty(trigChanPos)
+    error ('The trigger channel must named "mkr2+" (case insensitive)');
 end
-triggers_t_macro               = nonzeros (EEG.times (abs(EEG.data(end,:))>TRIGGER_THRESHOLD_MACRO));
+triggers_t_macro = nonzeros (EEG.times (abs(EEG.data(trigChanPos,:))>TRIGGER_THRESHOLD_MACRO));
 if isempty(triggers_t_macro) 
     error ('Could not find any trigger in the macro file');
 end
