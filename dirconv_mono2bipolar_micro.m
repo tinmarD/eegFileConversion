@@ -12,7 +12,7 @@ keepTriggers        = 1;
 
 
 %% Read input directory
-DirStruct    = rdir(fullfile(monoFolder,'**\*.edf'));
+DirStruct    = rdir(fullfile(monoFolder,['**',filesep,'*.edf']));
 if isempty(DirStruct); 
     disp(['Could not find any edf file in ',monoFolder]);
     return;

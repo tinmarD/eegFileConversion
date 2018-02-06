@@ -6,12 +6,14 @@
 %% Parameters
 chunkDuration       = -1;   % secondes
 downsamplingFactor  = 6;    
-NSfolder            = uigetdir('Select folder containing .NS5 files');
-EDFoutputDir        = uigetdir('Select output directory');
+% NSfolder            = uigetdir('Select folder containing .NS5 files');
+% EDFoutputDir        = uigetdir('Select output directory');
+NSfolder            = 'C:\Users\deudon\Desktop\SpikeSorting\_Data\HDF5_animation\part0';
+EDFoutputDir        = 'C:\Users\deudon\Desktop\SpikeSorting\_Data\HDF5_animation\part0';
 
 
 %% Read input directory
-nsxDirStruct    = rdir(fullfile(NSfolder,'**\*.ns5'));
+nsxDirStruct    = rdir(fullfile(NSfolder,['**',filesep,'*.ns5']));
 if isempty(nsxDirStruct); 
     disp(['Could not find any NSx file in ',NSfolder]);
     return;
