@@ -4,13 +4,13 @@
 
 
 %% Parameters
-chunkDuration       = -1;   % secondes
-downsamplingFactor  = 6;    
+chunkDuration       = 600;   % secondes
+downsamplingFactor  = 1;    
 % NSfolder            = uigetdir('Select folder containing .NS5 files');
 % EDFoutputDir        = uigetdir('Select output directory');
-NSfolder            = 'C:\Users\deudon\Desktop\SpikeSorting\_Data\HDF5_animation\part0';
-EDFoutputDir        = 'C:\Users\deudon\Desktop\SpikeSorting\_Data\HDF5_animation\part0';
-
+NSfolder            = 'C:\Users\deudon\Desktop\FichiersAConvertir\TA18_Stim\micro';
+EDFoutputDir        = 'C:\Users\deudon\Desktop\FichiersAConvertir\TA18_Stim\micro\EDF';
+addTriggerChannel   = 0;
 
 %% Read input directory
 nsxDirStruct    = rdir(fullfile(NSfolder,['**',filesep,'*.ns5']));
@@ -58,7 +58,7 @@ for iFile=1:nFiles
             NSpart_i  	= openNSx (fullfile(NS.MetaTags.FilePath,[NS.MetaTags.Filename, NS.MetaTags.FileExt]),...
                 'precision','double',['t:',num2str(indStart),':',num2str(indEnd)],'sample');   
             % Conversion
-            EEGpart_i   = nsx2eeglab(NSpart_i, downsamplingFactor);
+            EEGpart_i   = nsx2eeglab(NSpart_i, downsamplingFactor, addTriggerChannel);
             % Write file
             outputFilename_i = [NS.MetaTags.Filename(1:end-4),'_p',num2str(iChunk),'_',num2str(tStart),'_',num2str(tEnd),'s_',FsOutStr,'.edf'];
             pop_writeeeg (EEGpart_i,fullfile(outputDir,outputFilename_i),'TYPE','EDF');
