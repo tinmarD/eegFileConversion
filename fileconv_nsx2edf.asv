@@ -27,9 +27,7 @@ if nargin<2
     if ~isstruct(NS); disp('Could not open NSx file'); return; end;
     inFilepath  = NS.MetaTags.FilePath;
     inFilename  = NS.MetaTags.Filename;
-    if ~strcmp(inFilename(1:end-4),NS.MetaTags.FileExt)
-        inFilename = [inFilename, NS.MetaTags.FileExt];
-    end
+    if ~strcmp(inFilename(:end-4)
 else
     NS          = openNSx(fullfile(inFilepath,inFilename));
     if ~isstruct(NS); disp(['Could not open NSx file : ',fullfile(inFilepath,inFilename)]); return; end;
