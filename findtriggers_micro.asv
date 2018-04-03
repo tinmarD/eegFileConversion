@@ -86,17 +86,18 @@ if ~triggersFound
 end
 
 if triggersFound
-    triggerToRemoveAll = zeros(1,length(triggers_msec_raw));
+%     triggerToRemoveAll = zeros(1,length(triggers_msec_raw));
     %- Remove double triggers, or triple, quadruple... only keep the first one
     triggerIntSec   = (triggers_msec_raw(2:end)-triggers_msec_raw(1:end-1))/1000;
     triggerToRemove = [0;triggerIntSec(:)<(minTimeBetweenTriggers)];
-    triggerToRemoveAll(logical(triggerToRemove)) = 1;
-    while sum(triggerToRemove) > 0
-       triggerIntSec   = triggers_msec_raw(logical([0;triggerToRemove(1:end-1)])) - triggers_msec_raw(logical(triggerToRemove))/1000;
-       triggerToRemove = [0;triggerIntSec(:)<(minTimeBetweenTriggers)];
-       triggerToRemoveAll(logical(triggerToRemove)) = 1;
-    end
-    triggers_msec_single = triggers_msec_raw(~(logical(triggerToRemoveAll)));
+%     triggerToRemoveAll(logical(triggerToRemove)) = 1;
+%     while sum(triggerToRemove) > 0
+%        triggerIntSec   = triggers_msec_raw(logical([0;triggerToRemove(1:end-1)])) - triggers_msec_raw(logical(triggerToRemove))/1000;
+%        triggerToRemove = [0;triggerIntSec(:)<(minTimeBetweenTriggers)];
+%        triggerToRemoveAll(logical(triggerToRemove)) = 1;
+%     end
+%     triggers_msec_single = triggers_msec_raw(~(logical(triggerToRemoveAll)));
+    triggers_msec_single = triggers_msec_raw(~(logical(triggerToRemove)));
     disp(['Found ',num2str(length(triggers_msec_raw)-length(triggers_msec_single)),'/',num2str(length(triggers_msec_raw)),' doubled triggers - deleting the doubled ones']);
 else
     triggers_msec_single = [];
