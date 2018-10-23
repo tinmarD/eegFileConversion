@@ -7,7 +7,7 @@
 
 %- Outputs : 
 %   - Bipolar files for both micro and macro signals divided in 10min
-%   segments
+%   segments²
 
 
 %- Operations 
@@ -121,7 +121,7 @@ jediconv_nsx2edf      (NS, chunkduration, downsamplingfactor, patientNum, dayNum
 jediconv_syncanddividemacrofile (NS, EEG, macro_pathname, chunkduration, patientNum, dayNumMacro, macrobadchannels);
 
 % 3 - Convert the Macro monopolar files into bipolar files
-% jediconv_macro_mono2bipolar (macro_pathname,macrobadchannels);
+% jediconv_macro_mono2bipolar (macro_pathname, macrobadchannels);
 
 % 4 - Convert the micro monopolar files into bipolar files
 % jediconv_micro_mono2bipolar (micro_ns5_pathname, patientNum, NS.MetaTags.SamplingFreq/downsamplingfactor);

@@ -6,8 +6,8 @@ function [outFilepath, outFilenames] = filedivide_edf ...
 % Can be call as a script with no arguments
 %
 % Optional Inputs: 
-%   - inFilepath            : Input NSx filepath 
-%   - inFilename            : Input NSx filename
+%   - inFilepath            : Input EDF filepath 
+%   - inFilename            : Input EDF filename
 %   - chunkDuration         : File will be divided in chunks of
 %                             chunkDuration seconds
 %   - outFilepath           : Output EDF filepath 
