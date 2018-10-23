@@ -1,4 +1,15 @@
 
+Matlab scripts and function to work with iEEG files.
+
+ * File conversion 
+     * NSX (Blackrock) to EDF 
+     * NCS (Neuralynx) to EDF
+ * Change the montage (monopolar to bipolar, inter/intra tetrode montage)
+ * Synchronize micro- and Macro- files
+ * Automated EpiFaR files conversion  
+
+The main scripts are described here :
+
 |      Function       |              file                     |              misc.                      |
 |:-------------------:|:-------------------------------------:|-----------------------------------------|
 | `Format Conversion`   |     *fileconv_nsx2edf()*              |                                         |
