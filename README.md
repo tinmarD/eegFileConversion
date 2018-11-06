@@ -10,22 +10,24 @@ Matlab scripts and function to work with iEEG files.
 
 The main scripts are described here :
 
-|      Function       |              file                     |              misc.                      |
-|:-------------------:|:-------------------------------------:|-----------------------------------------|
-| `Format Conversion`   |     *fileconv_nsx2edf()*              |                                         |
-|                     |     *nsx2eeglab()*                    |                                         |
-|                     |     *dirconv_nsx2edf*                 |                                         |
-| `Mono-to-bipolar`     |     *fileconv_mono2bipolar_macro()*   |                                         |
-|                     |     *fileconv_mono2bipolar_micro()*   |                                         |
-|                     |     *mono2bipolar_macro()*            |                                         |
-|                     |     *mono2bipolar_micro()*            |                                         |
-|                     |     *dirconv_mono2bipolar_macro*      |                                         |
-|                     |     *dirconv_mono2bipolar_micro*      |                                         |
-| `Synchronization`     |     *filesync_macromicro()*           |                                         |
-| `Divide`             |     *filedivide_edf()*                |                                         |
-| `EpiFaR`              |     *jediconv*                        |                                         |
-|                     |     *jediconv_dir*                    |                                         |
-|                     |     *yodaconv*                        |         Experimental                    |
+|      Function       |              file                     |         misc.     |     Down-sampling   |
+|:-------------------:|:-------------------------------------:|:-----------------:|:-------------------:|
+| `Format Conversion` |     *fileconv_nsx2edf()*              |                   |          Yes        |
+|                     |     *nsx2eeglab()*                    |                   |          Yes        |
+|                     |     *dirconv_nsx2edf*                 |                   |          Yes        |
+| `Mono-to-bipolar`   |     *fileconv_mono2bipolar_macro()*   |                   |          No         |
+|                     |     *fileconv_mono2bipolar_micro()*   |                   |          No         |
+|                     |     *mono2bipolar_macro()*            |                   |          No         |
+|                     |     *mono2bipolar_micro()*            |                   |          No         |
+|                     |     *dirconv_mono2bipolar_macro*      |                   |          No         |
+|                     |     *dirconv_mono2bipolar_micro*      |                   |          No         |
+| `Synchronization`   |     *filesync_macromicro()*           |                   |          No         |
+| `Divide`            |     *filedivide_edf()*                |                   |          No         |
+| `Downsampling`      |     *fileconv_downsample_edf()*       |                   |          Yes        |
+|                     |     *dirconv_downsample_edf*          |                   |          Yes        |
+| `EpiFaR`            |     *jediconv*                        |                   |          Yes        |
+|                     |     *jediconv_dir*                    |                   |          Yes        |
+|                     |     *yodaconv*                        |     Experimental  |          Yes        |
 
 
 External files needed : 
