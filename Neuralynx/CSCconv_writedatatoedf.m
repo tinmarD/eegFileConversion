@@ -1,5 +1,5 @@
 function [] = CSCconv_writedatatoedf(data, srate, channames, out_dirpath, out_filename)
-%UNTITLED write the data matrix to an EDF file
+%CSCconv_writedatatoedf write the data matrix to an EDF file
 %   First construct an EEGLAB structure, then write the EEGLAB dataset to
 % an EDF file.
 %

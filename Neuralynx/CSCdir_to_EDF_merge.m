@@ -3,12 +3,10 @@
 % Log file, convert the files to an EDF file, merging all the channels
 % together
 
-config_log_filepath = 'C:\Users\deudon\Desktop\SpikeSorting\_Data\Neuralynx\EB22-screening1_oddball1_NLX\ConfigurationLog\Micromed128csc8TT.log';
-csc_dirpath = 'C:\Users\deudon\Desktop\SpikeSorting\_Data\Neuralynx\EB22-screening1_oddball1_NLX';
-out_dirpath = 'C:\Users\deudon\Desktop\SpikeSorting\_Data\Neuralynx\EDF_files\';
+config_log_filepath = 'C:\Users\deudon\Desktop\Epifar\_Data\TestFiles\EB22-screening1_oddball1_NLX\ConfigurationLog\Micromed128csc8TT.log';
+csc_dirpath = 'C:\Users\deudon\Desktop\Epifar\_Data\TestFiles\EB22-screening1_oddball1_NLX';
+out_dirpath = 'C:\Users\deudon\Desktop\Epifar\_Data\TestFiles\NLX_EDF';
 srate = 32768; % Sampling rate
-% ADBitVolts_macro = 0.000000097656250000000005; % To be find in the header from the ncs files
-% ADBitVolts_micro = 0.000000097656250000000005; % To be find in the header from the ncs files
 downsamplingFactorMacro = 16; % From 32768 Hz to 2048 Hz
 
 %% Read config file

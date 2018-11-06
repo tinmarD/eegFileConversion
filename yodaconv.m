@@ -30,7 +30,7 @@ microNS5filenames   = {dirstruct.name};
 
 nMicroParts       = length(microNS5filenames);
 if nMicroParts < 2
-    error ('Chameleon - Use the Jedi Version');
+    error ('Use jediconv');
 end
 
 %- Check day of recording for micro and Macro 

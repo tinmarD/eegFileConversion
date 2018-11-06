@@ -1,20 +1,13 @@
 % CSCdir_to_EDF_divide
 % Given the directory containing all the CSC files and the Configuration
-% Log file, convert the files to an EDF file, merging all the channels
-% together
+% Log file, convert the files to an EDF file
 
-config_log_filepath = 'C:\Users\deudon\Desktop\EpiFaR\_Data\2018-02-01_10-31-54\ConfigurationLog\Micromed128csc8TT_SCALP.log';
-csc_dirpath = 'C:\Users\deudon\Desktop\EpiFaR\_Data\2018-02-01_10-31-54';
-out_dirpath = 'C:\Users\deudon\Desktop\EpiFaR\_Data\2018-02-01_10-31-54_EDF';
-
-% config_log_filepath ='C:\Users\deudon\Desktop\SpikeSorting\_Data\Neuralynx\EB22-screening1_oddball1_NLX\ConfigurationLog\Micromed128csc8TT.log';
-% csc_dirpath = 'C:\Users\deudon\Desktop\SpikeSorting\_Data\Neuralynx\EB22-screening1_oddball1_NLX\';
-% out_dirpath = 'C:\Users\deudon\Desktop\SpikeSorting\_Data\Neuralynx\EDF_divide';
-srate = 16384; % Sampling rate
-% ADBitVolts_macro = 0.000000097656250000000005; % To be find in the header from the ncs files
-% ADBitVolts_micro = 0.000000097656250000000005; % To be find in the header from the ncs files
+config_log_filepath = 'C:\Users\deudon\Desktop\Epifar\_Data\TestFiles\EB22-screening1_oddball1_NLX\ConfigurationLog\Micromed128csc8TT.log';
+csc_dirpath = 'C:\Users\deudon\Desktop\Epifar\_Data\TestFiles\EB22-screening1_oddball1_NLX';
+out_dirpath = 'C:\Users\deudon\Desktop\Epifar\_Data\TestFiles\NLX_EDF_divide';
+srate = 32768; % Sampling rate
 downsamplingFactorMacro = 16; % From 32768 Hz to 2048 Hz
-downsamplingFactorMicro = 1; % From 32768 Hz to about 5461 Hz
+downsamplingFactorMicro = 1
 
 %% Make output directory
 % Get csc directory name 
@@ -89,7 +82,7 @@ first_channame = channames{1};
 files_first_chan = rdir(fullfile(csc_dirpath,[first_channame,'*.ncs']));
 n_files_per_chan = length(files_first_chan);
 n_samples_per_files = zeros(n_files_per_chan, 1);
-for i = 8:n_files_per_chan
+for i = 1:n_files_per_chan
     [~, ~, ~, n_valid_samples, samples_mat_j, header] = Nlx2MatCSC...
         (files_first_chan(i).name, FieldSelectionFlags, readHeader, ExtractMode);
     n_samples_per_files(i) = numel(samples_mat_j);
@@ -110,7 +103,7 @@ disp('Macro channels');
 ADBitVolts_all_macro = zeros(n_macro_chan, n_files_per_chan);
 
 
-for i_file = 8:n_files_per_chan
+for i_file = 1:n_files_per_chan
     n_samples_per_files_i = n_samples_per_files(i_file);
     % Load the first channel and resample it to get the number of data
     % points once the signal is resampled.
@@ -171,7 +164,7 @@ end
 ADBitVolts_all_micro = zeros(n_micro_chan, n_files_per_chan);
 
 disp('Micro channels');
-for i_file = 8:n_files_per_chan
+for i_file = 1:n_files_per_chan
     n_samples_per_files_i = n_samples_per_files(i_file);
     % Load the first channel and resample it to get the number of data
     % points once the signal is resampled.

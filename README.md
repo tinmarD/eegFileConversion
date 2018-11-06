@@ -32,3 +32,5 @@ External files needed :
 
  * For Blackrock files (*ns5*, *nsx*, *nev*), download the [NPMK toolbox](https://github.com/BlackrockMicrosystems/NPMK)
  * For NeuraLynx files (*ncs*), you will need the NeuraLynx [*MATLAB Import/Export MEX Files*](https://neuralynx.com/software/category/matlab-netcom-utilities)
+ * EEGLAB is needed for most of the scripts 
+ * ERPLAB is needed for the monopolar to bipolar conversion scripts
