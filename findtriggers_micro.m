@@ -77,10 +77,14 @@ if ~triggersFound
             try
                 triggers_msec_raw           = 1000*NEV.Data.SerialDigitalIO.TimeStampSec';
             catch
-                error('Could not find the triggers in the data file and in the NEV file');
+                warning('Could not find the triggers in the data file and in the NEV file');
             end
-            disp('Triggers found in NEV.Data.SerialDigitalIO.TimeStampSec');
-            triggersFound = 1;
+            if ~isempty(triggers_msec_raw)
+                disp('Triggers found in NEV.Data.SerialDigitalIO.TimeStampSec');
+                triggersFound = 1;
+            else
+            	warning('Could not find the triggers in the data file and in the NEV file');
+            end
         end
     end
 end
