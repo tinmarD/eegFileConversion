@@ -37,6 +37,9 @@ microTrigDuration   = 0.005; % sec
 
 
 % Get the NS data and divide the amplitude by 4 (to get an amplitude in µV)
+if iscell(NS.Data)
+    error('The NS file data is composed of 2 parts. Use the NPKM scripts to fix this');
+end    
 NS_Data = double(NS.Data/4);
 disp ('Amplitude divided by 4');
 
