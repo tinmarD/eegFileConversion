@@ -1,6 +1,6 @@
-function [outDirpath, outFilenames, EEGs] = fileconv_nsx2edf ...
+function [outDirpathEDF, outFilenames, EEGs] = fileconv_nsx2edf ...
     (inDirpath, inFilename, chunkDuration, downsamplingFactor, outDirpathEDF)
-% [outDirpath, outFilenames, EEGs] = FILECONV_NSX2EDF 
+% [outDirpathEDF, outFilenames, EEGs] = FILECONV_NSX2EDF 
 %               (inputFilepath, chunkDuration, downsamplingFactor)
 % Function/script to convert a NSx file to EDF format. Can be call as a
 % script with no arguments
@@ -12,10 +12,10 @@ function [outDirpath, outFilenames, EEGs] = fileconv_nsx2edf ...
 %                             chunkDuration seconds, 
 %                             if -1 file will not be divided
 %   - downsamplingFactor    : Downsampling factor
-%   - outDirpath           : Output EDF filepath 
+%   - outDirpathEDF           : Output EDF filepath 
 %
 % Outputs:
-%   - outDirpath            : Output EDF directory path 
+%   - outDirpathEDF            : Output EDF directory path 
 %   - outFilenames          : Output filename(s) [Cell]
 %   - EEGs                  : Cell containing the different EEG structure
 %                             for each segment
@@ -25,7 +25,7 @@ function [outDirpath, outFilenames, EEGs] = fileconv_nsx2edf ...
 outFilenames = {};
 EEGs = {};
 if nargin < 5
-    outDirpath = '';
+    outDirpathEDF = '';
 end
 if nargin<2
     NS          = openNSx();
@@ -48,7 +48,7 @@ if nargin<4
     downsamplingFactor  = 6;    % from 30kHz to 5kHz (if 6)
 end
 if nargin<5
-    outDirpath = inDirpath;
+    outDirpathEDF = inDirpath;
 end
 
 %% NSX file parameters
@@ -74,7 +74,7 @@ EEGs            = cell(1,nChunks);
 if chunkDuration<0
     EEGs{1}         = nsx2eeglab(NS, downsamplingFactor);
     outFilenames{1} = [inFilename(1:end-4),'_',num2str(FsOutStr),'.edf'];
-    pop_writeeeg (EEGs{1},fullfile(outDirpath,outFilenames{1}),'TYPE','EDF');
+    pop_writeeeg (EEGs{1},fullfile(outDirpathEDF,outFilenames{1}),'TYPE','EDF');
 else
     for iChunk=1:nChunks
         disp (['part ',num2str(iChunk),'/',num2str(nChunks)]);
@@ -89,7 +89,7 @@ else
         EEGs{iChunk}   = nsx2eeglab(NSpart_i, downsamplingFactor);
         % Write file
         outFilenames{iChunk} = [NS.MetaTags.Filename(1:end-4),'_p',num2str(iChunk),'_',num2str(tStart),'_',num2str(tEnd),'s_',FsOutStr,'.edf'];
-        pop_writeeeg (EEGs{iChunk},fullfile(outDirpath,outFilenames{iChunk}),'TYPE','EDF');
+        pop_writeeeg (EEGs{iChunk},fullfile(outDirpathEDF,outFilenames{iChunk}),'TYPE','EDF');
     end
 end
 
