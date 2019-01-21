@@ -79,6 +79,7 @@ end
 % end
 
 
+
 % Create an empty eeglab structure
 EEG         = eeg_emptyset;
 % Add the data and sampling rate info
@@ -90,11 +91,22 @@ EEG         = eeg_checkset (EEG);
 
 % Fill the chanlocs information (electrode's label)
 for i=1:EEG.nbchan
-    channel_name = strtrim(NS.ElectrodesInfo(i).Label);
+    channel_name = deblank(strtrim(NS.ElectrodesInfo(i).Label));
     if ~isempty(regexpi (channel_name,'trigger')) || ~isempty(regexpi (channel_name,'ainp1'))
         EEG.chanlocs(i).labels = triggerChanName;
     else
         EEG.chanlocs(i).labels = ['EEG ',channel_name];
+    end
+end
+
+% For each channel, check that the channel is not empty (all amplitude
+% values set to 0). If it's the case, set a -1 as the first value.
+% Otherwise, the minimum of the signal will be equal to the maximum of the
+% signal and it will create an issue with the EDF file norme (and it might
+% not be possible to load the edf file).
+for i=1:EEG.nbchan
+    if min(EEG.data(i,:)) == max(EEG.data(i,:))
+        EEG.data(i,1) = min(EEG.data(i,:)) - 1;
     end
 end
 
@@ -120,7 +132,6 @@ if addTriggerChannel
         end
     end
 end
-
 
 EEG         = eeg_checkset (EEG);
 

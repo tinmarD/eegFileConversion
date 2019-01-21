@@ -42,7 +42,7 @@ end
 
 %% Parameters
 if nargin<3
-    chunkDuration       = -1;   % sec - if -1 no file segmentation
+    chunkDuration       = 600;   % sec - if -1 no file segmentation
 end
 if nargin<4
     downsamplingFactor  = 6;    % from 30kHz to 5kHz (if 6)
